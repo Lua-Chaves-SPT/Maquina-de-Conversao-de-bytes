@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Runic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>Máquina Suprema da Ilha Byte</h1>
+    <div class="container_bases">
+
+        <label>Escolha uma base</label><br>
+        <select id="select_base">
+            <option value="10">Decimal</option>
+            <option value="2">Binário</option>
+            <option value="8">Octal</option>
+            <option value="16">Hexadecimal</option>
+        </select> <br> <br>
+        
+            <label>Digite um número de acordo com a base selecionada</label><br>
+            <input id="input_valor" placeholder="Ex: 1024" />
+            <br><br>
+
+        <button onclick="conversao()">Converter</button>
+        
+    </div>
+    <div class="resultado-container">
+        <div id="conv_decimal"> Decimal : </div> 
+        <div id="conv_binario"> Binário : </div>
+        <div id="conv_octal"> Octal : </div>
+        <div id="conv_hexadecimal"> Hexadecimal : </div>
+    </div>
+
+    <script>
+        function conversao() {
+
+            var base = select_base.value;
+            var valor = input_valor.value;
+            var vlrInvalidos = Number(2,3,4,5,6,7,8,9);
+
+            if (base == '2' && valor.includes(vlrInvalidos)) {
+                alert('Valores Inválidos para a base selecionada');
+                return;
+            }
+
+            if (base == '8' && (valor.includes('8') || valor.includes('9'))) {
+                alert('Valores Inválidos para a base selecionada');
+                return;
+            }
+
+            var decimal =  parseInt(valor, parseInt(base));
+
+            conv_decimal.innerHTML = `Decimal: <br> ${decimal.toString(10)}`;
+            conv_binario.innerHTML = `Binário:  <br>  ${decimal.toString(2)}`;
+            conv_octal.innerHTML = `Octal: <br>  ${decimal.toString(8)}`;
+            conv_hexadecimal.innerHTML = `Hexadecimal : <br> ${decimal.toString(16).toUpperCase()}`;
+        }
+    </script>
+
+</body>
+
+</html>
